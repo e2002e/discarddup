@@ -1,10 +1,13 @@
 #!/usr/bin/python2.7
 import sys
+import argparse
 
-file1 = open(sys.argv[1], 'r')
-file2 = open(sys.argv[2], 'rw+')
-tmp = file1.readlines()
-tmp2 = file2.readlines()
+parser = argparse.ArgumentParser(description="remove duplicate lines from files")
+parser.add_argument("FILE1", type=argparse.FileType('r'), metavar="file1", help="file to test with")
+parser.add_argument("FILE2", type=argparse.FileType('rw+'), metavar="file2", help="file to operate on")
+parser.parse_args()
+tmp = parser.file1.readlines()
+tmp2 = parser.file2.readlines()
 
 a = 0
 
