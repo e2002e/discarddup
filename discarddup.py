@@ -3,11 +3,11 @@ import sys
 import argparse
 
 parser = argparse.ArgumentParser(description="remove duplicate lines from files")
-parser.add_argument("FILE1", type=argparse.FileType('r'), metavar="file1", help="file to test with")
-parser.add_argument("FILE2", type=argparse.FileType('rw+'), metavar="file2", help="file to operate on")
-parser.parse_args()
-tmp = parser.file1.readlines()
-tmp2 = parser.file2.readlines()
+parser.add_argument("FILE1", type=argparse.FileType('r'), help="file to test with")
+parser.add_argument("FILE2", type=argparse.FileType('rw+'), help="file to operate on")
+args = parser.parse_args()
+tmp = args.FILE1.readlines()
+tmp2 = args.FILE2.readlines()
 
 a = 0
 
@@ -20,8 +20,8 @@ for line1 in iter(tmp):
 		x += 1
 print "removed %d duplicates" % a
 
-file1.close()	
-file2.seek(0)
-file2.truncate()
-file2.writelines(tmp2)
-file2.close()
+args.FILE1.close()	
+args.FILE2.seek(0)
+args.FILE2.truncate()
+args.FILE2.writelines(tmp2)
+args.FILE2.close()
